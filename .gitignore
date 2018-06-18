@@ -1,0 +1,9 @@
+**/.vs
+**/node_modules
+**/bower_components
+**/bin
+**/obj
+**/*.csproj.user
+**/*.splproj.user
+**/packages
+**/TestResults
