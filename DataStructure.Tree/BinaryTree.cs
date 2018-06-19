@@ -42,6 +42,7 @@ namespace DataStructure.Tree
 
         public void Print()
         {
+            Console.WriteLine();
             var indentationAdjustment = 0;
             for (var i = 0; i < _depth; i++)
             {
@@ -84,7 +85,7 @@ namespace DataStructure.Tree
                         }
                         sb.Append(nodes[l].Left == null ? " " : "/");
                         sb.Append(Spaces(baseLength));
-                        sb.Append(nodes[l].Left == null ? " " : "\\");
+                        sb.Append(nodes[l].Right == null ? " " : "\\");
                         if (l < nodes.Count - 1)
                         {
                             // Subtract 1 extra space for the error in the base calculation
