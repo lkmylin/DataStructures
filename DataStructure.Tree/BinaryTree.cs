@@ -7,8 +7,8 @@ namespace DataStructure.Tree
 {
     public class BinaryTree<T>
     {
-        private const int _indentation = 5;
-        private const int _connectionLength = 2;
+        private const int _indentation = 2;
+        private const int _branchLength = 1;
         private readonly BinaryTreeNode<T> _root;
         private readonly List<BinaryTreeNode<T>> _nodes;
         private int _depth;
@@ -47,14 +47,18 @@ namespace DataStructure.Tree
             {
                 var nodes = _nodes.Where(x => x.Level == i).ToList();
                 // Length of the connection lines has to decrease exponentially as we move down the tree                
-                var connectionLength = _connectionLength * (int)Math.Pow(2, _depth - i);
-                var prevConnectionLength = i == 0 ? 0 : _connectionLength * (int)Math.Pow(2, _depth - i + 1);
-                indentationAdjustment += (2 * prevConnectionLength - 1) / 2;
-                var indentation = _indentation * (int)Math.Pow(2, _depth) - (i == 0 ? 0 : indentationAdjustment);
+                var branchLength = _branchLength * (int)Math.Pow(2, _depth - i);
+                var parentBranchLength = i == 0 ? 0 : _branchLength * (int)Math.Pow(2, _depth - i + 1);
+                var parentBaseLength = i == 0 ? 0 : 2 * parentBranchLength - 1;
+                indentationAdjustment += parentBaseLength / 2;
+                var indentation = _indentation * (int)Math.Pow(2, _depth) - indentationAdjustment;
+                // Correction for cumulative error of 1 space per loop after first loop due to
+                // half space in parentBaseLength calculation
                 indentation -= i;
                 var sb = new StringBuilder();
                 for (var j = 0; j < nodes.Count; j++)
                 {
+                    // Must compensate for extra space(s) if value occupies more that 1 space
                     var valueLength = nodes[j].Value.ToString().Length;
                     if (j == 0)
                     {
@@ -63,13 +67,14 @@ namespace DataStructure.Tree
                     sb.Append(nodes[j].Value);
                     if (j < nodes.Count - 1)
                     {
-                        sb.Append(Spaces(2 * prevConnectionLength - 1 - (valueLength > 1 ? valueLength - 1 : 0)));
+                        sb.Append(Spaces(parentBaseLength - (valueLength > 1 ? valueLength - 1 : 0)));
                     }
                 }
                 Console.WriteLine(sb.ToString());
                 if (i == _depth - 1) return;
-                for (var k = 1; k < connectionLength; k++)
+                for (var k = 1; k < branchLength; k++)
                 {
+                    var baseLength = 2 * k - 1;
                     sb.Clear();
                     for (var l = 0; l < nodes.Count; l++)
                     {
@@ -78,11 +83,12 @@ namespace DataStructure.Tree
                             sb.Append(Spaces(indentation - k));
                         }
                         sb.Append(nodes[l].Left == null ? " " : "/");
-                        sb.Append(Spaces(2 * k - 1));
+                        sb.Append(Spaces(baseLength));
                         sb.Append(nodes[l].Left == null ? " " : "\\");
                         if (l < nodes.Count - 1)
                         {
-                            sb.Append(Spaces((2 * prevConnectionLength - 1) - (2 * k - 1) - 1));
+                            // Subtract 1 extra space for the error in the base calculation
+                            sb.Append(Spaces(parentBaseLength - baseLength - 1));
                         }
                     }
                     Console.WriteLine(sb.ToString());
