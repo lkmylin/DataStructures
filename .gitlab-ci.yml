@@ -1,0 +1,19 @@
+image : microsoft/dotnet:latest
+before_script:
+ - echo Starting CI pipeline for DataStructures...
+stages:
+ - build
+ - test
+build:
+ stage: build
+ script:
+  - dotnet restore
+  - dotnet msbuild DataStructures.sln
+  - dotnet publish DataStructures.sln -c Release -r win10-x64
+ artifacts:
+  untracked: true
+test:
+ stage: test
+ script:
+  - echo Runnings tests...
+  - dotnet test DataStructures.Test.Unit/DataStructures.Test.Unit.csproj
