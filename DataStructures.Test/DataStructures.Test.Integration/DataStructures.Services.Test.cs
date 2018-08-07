@@ -1,3 +1,4 @@
+using System;
 using NUnit.Framework;
 using System.Collections.Generic;
 using DataStructures.Models;
@@ -25,7 +26,7 @@ namespace DataStructures.Test.Integration
         {
             GivenTree(testCase.NodeCount);
             WhenStringify();
-            ThenTreePrinted(testCase.Data);
+            ThenTreePrinted(testCase.Data.Replace("\r\n", Environment.NewLine));
         }
 
         private void GivenTree(int nodeCount)

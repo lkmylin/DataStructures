@@ -8,7 +8,7 @@ namespace DataStructures.Test.Common
 {
     public static class TestDataStore
     {
-        private const string _testDataPath = @"..\..\..\..\DataStructures.Test.Common\test_data.json";
+        private static readonly string _testDataPath = $"..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}DataStructures.Test.Common{Path.DirectorySeparatorChar}test_data.json";
         private static TestData _testData;
 
         public static TestData TestData => _testData ?? (_testData = GetTestData());
