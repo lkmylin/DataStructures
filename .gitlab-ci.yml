@@ -16,4 +16,5 @@ test:
  stage: test
  script:
   - echo Runnings tests...
-  - dotnet test DataStructures.Test.Unit/DataStructures.Test.Unit.csproj
+  - dotnet test DataStructures.Test/DataStructures.Test.Unit/DataStructures.Test.Unit.csproj
+  - dotnet test DataStructures.Test/DataStructures.Test.Integration/DataStructures.Test.Integration.csproj
