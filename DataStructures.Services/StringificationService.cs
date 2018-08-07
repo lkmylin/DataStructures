@@ -17,15 +17,22 @@ namespace DataStructures.Services
         private const int _branchLength = 1;
 
         public string Stringify(IBinaryTree<T> tree)
-        {            
+        {
+            if (tree?.Root == null || tree.Root.Value == null) return string.Empty;
             var result = new StringBuilder();
             var indentationAdjustment = 0;
-            var allNnodes = new List<IBinaryTreeNode<T>>();
-            GetAllNodes(tree.Root, ref allNnodes);
-            result.Append(Environment.NewLine);            
+            var allNodes = new List<IBinaryTreeNode<T>>();
+            GetAllNodes(tree.Root, ref allNodes);
+            result.Append(Environment.NewLine);
+            if (allNodes.Count == 1)
+            {
+                result.Append(Spaces(_indentation) + tree.Root.Value.ToString());
+                result.Append(Environment.NewLine);
+                return result.ToString();
+            }
             for (var i = 0; i < tree.Depth; i++)
             {
-                var nodes = allNnodes.Where(x => x.Level == i).ToList();
+                var nodes = allNodes.Where(x => x.Level == i).ToList();
                 // Length of the connection lines has to decrease exponentially as we move down the tree                
                 var branchLength = _branchLength * (int)Math.Pow(2, tree.Depth - i);
                 var parentBranchLength = i == 0 ? 0 : _branchLength * (int)Math.Pow(2, tree.Depth - i + 1);
