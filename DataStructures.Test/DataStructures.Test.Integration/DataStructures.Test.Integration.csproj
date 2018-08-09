@@ -14,8 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\DataStructures.Models\DataStructures.Models.csproj" />
-    <ProjectReference Include="..\..\DataStructures.Services\DataStructures.Services.csproj" />
+    <ProjectReference Include="..\..\DataStructures\DataStructures.csproj" />
     <ProjectReference Include="..\DataStructures.Test.Common\DataStructures.Test.Common.csproj" />
   </ItemGroup>
 

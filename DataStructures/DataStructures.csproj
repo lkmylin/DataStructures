@@ -5,8 +5,4 @@
     <RootNamespace>DataStructures.Services</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\DataStructures.Models\DataStructures.Models.csproj" />
-  </ItemGroup>
-
 </Project>

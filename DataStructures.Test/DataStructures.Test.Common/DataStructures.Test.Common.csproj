@@ -10,8 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\DataStructures.Models\DataStructures.Models.csproj" />
-    <ProjectReference Include="..\..\DataStructures.Services\DataStructures.Services.csproj" />
+    <ProjectReference Include="..\..\DataStructures\DataStructures.csproj" />
   </ItemGroup>
 
 </Project>

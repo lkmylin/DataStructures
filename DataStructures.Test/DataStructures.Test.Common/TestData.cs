@@ -3,6 +3,7 @@ using System.IO;
 using System.Text;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using DataStructures.Models;
 
 namespace DataStructures.Test.Common
 {
@@ -32,7 +33,8 @@ namespace DataStructures.Test.Common
 
     public class BinaryTreeTest
     {
-        public int NodeCount { get; set; }
+        public List<int> Nodes { get; set; }
+        public BinaryTreeType Type { get; set; }
         public string Data { get; set; }
     }
 }

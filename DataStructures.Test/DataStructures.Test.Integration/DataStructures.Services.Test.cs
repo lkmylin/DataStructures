@@ -12,31 +12,28 @@ namespace DataStructures.Test.Integration
     {
         private readonly IStringificationService<int> _stringificationService;
         private readonly IStructureBuilder<int> _structureBuilder;
+        private readonly INodeProvider<int> _nodeProvider;
         private IBinaryTree<int> _tree;
         private string _thenStringificationResult;
 
         public DataStructuresServicesTest()
         {
             _stringificationService = new StringificationService<int>();
-            _structureBuilder = new StructureBuilder<int>();
+            _nodeProvider = new NodeProvider<int>();
+            _structureBuilder = new StructureBuilder<int>(_nodeProvider);
         }
 
         [Test, TestCaseSource("GetBinaryTreeTestCases")]
         public void StructureBuilderShouldBuildTreeAndStringificationServiceShouldPrintIt(BinaryTreeTest testCase)
         {
-            GivenTree(testCase.NodeCount);
+            GivenTree(testCase.Nodes, testCase.Type);
             WhenStringify();
             ThenTreePrinted(testCase.Data.Replace("\r\n", Environment.NewLine));
         }
 
-        private void GivenTree(int nodeCount)
+        private void GivenTree(List<int> nodes, BinaryTreeType type)
         {
-            var nodes = new List<IBinaryTreeNode<int>>();
-            for (var i = 1; i <= nodeCount; i++)
-            {
-                nodes.Add(new BinaryTreeNode<int>(i));
-            }
-            _tree = _structureBuilder.BuildTree(nodes);
+            _tree = _structureBuilder.BuildTree(nodes, type);
         }
 
         private void WhenStringify()

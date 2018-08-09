@@ -6,12 +6,12 @@ using System.Collections.Generic;
 
 namespace DataStructures.Services
 {
-    public interface IStringificationService<T>
+    public interface IStringificationService<T> where T : IComparable
     {
         string Stringify(IBinaryTree<T> tree);
     }
 
-    public class StringificationService<T> : IStringificationService<T>
+    public class StringificationService<T> : IStringificationService<T> where T : IComparable
     {
         private const int _indentation = 2;
         private const int _branchLength = 1;
@@ -33,6 +33,7 @@ namespace DataStructures.Services
             for (var i = 0; i < tree.Depth; i++)
             {
                 var nodes = allNodes.Where(x => x.Level == i).ToList();
+                var nodeCount = Math.Pow(2, i);
                 // Length of the connection lines has to decrease exponentially as we move down the tree                
                 var branchLength = _branchLength * (int)Math.Pow(2, tree.Depth - i);
                 var parentBranchLength = i == 0 ? 0 : _branchLength * (int)Math.Pow(2, tree.Depth - i + 1);
@@ -42,16 +43,17 @@ namespace DataStructures.Services
                 // Correction for cumulative error of 1 space per loop after first loop due to
                 // half space in parentBaseLength calculation
                 indentation -= i;
-                for (var j = 0; j < nodes.Count; j++)
+                for (var j = 0; j < nodeCount; j++)
                 {
+                    var currentNode = nodes.FirstOrDefault(x => x.Offset == j);
                     // Must compensate for extra space(s) if value occupies more that 1 space
-                    var valueLength = nodes[j].Value.ToString().Length;
+                    var valueLength = currentNode == null ? 1 : currentNode.Value.ToString().Length;
                     if (j == 0)
                     {
                         result.Append(Spaces(indentation));
                     }
-                    result.Append(nodes[j].Value);
-                    if (j < nodes.Count - 1)
+                    result.Append(currentNode == null ? Spaces(1) : currentNode.Value.ToString());
+                    if (j < nodeCount - 1)
                     {
                         result.Append(Spaces(parentBaseLength - (valueLength > 1 ? valueLength - 1 : 0)));
                     }
@@ -61,16 +63,17 @@ namespace DataStructures.Services
                 for (var k = 1; k < branchLength; k++)
                 {
                     var baseLength = 2 * k - 1;
-                    for (var l = 0; l < nodes.Count; l++)
+                    for (var l = 0; l < nodeCount; l++)
                     {
+                        var currentNode = nodes.FirstOrDefault(x => x.Offset == l);
                         if (l == 0)
                         {
                             result.Append(Spaces(indentation - k));
                         }
-                        result.Append(nodes[l].Left == null ? " " : "/");
+                        result.Append(currentNode?.Left == null ? Spaces(1) : "/");
                         result.Append(Spaces(baseLength));
-                        result.Append(nodes[l].Right == null ? " " : "\\");
-                        if (l < nodes.Count - 1)
+                        result.Append(currentNode?.Right == null ? Spaces(1) : "\\");
+                        if (l < nodeCount - 1)
                         {
                             // Subtract 1 extra space for the error in the base calculation
                             result.Append(Spaces(parentBaseLength - baseLength - 1));

@@ -3,19 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataStructures.Models", "DataStructures.Models\DataStructures.Models.csproj", "{4D83C072-46BB-42D6-9BED-0490E5CF7213}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataStructures.Test.EndToEnd", "DataStructures.Test\DataStructures.Test.EndToEnd\DataStructures.Test.EndToEnd.csproj", "{944674E2-BC3C-4044-B009-FE41B8CD2964}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataStructures.Services", "DataStructures.Services\DataStructures.Services.csproj", "{341C595A-FDAD-4BAD-B291-D872F2C56277}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataStructures", "DataStructures\DataStructures.csproj", "{341C595A-FDAD-4BAD-B291-D872F2C56277}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataStructures.Test.Unit", "DataStructures.Test\DataStructures.Test.Unit\DataStructures.Test.Unit.csproj", "{431235D3-CC80-4521-AAAF-913DA1C4C2C6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataStructures.Test", "DataStructures.Test", "{E79016AC-00CB-4FFF-B29F-2FBE4BF49A69}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataStructures.Test.Integration", "DataStructures.Test\DataStructures.Test.Integration\DataStructures.Test.Integration.csproj", "{35166C81-43F2-4286-98A2-AAF61809C106}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataStructures.Test.Integration", "DataStructures.Test\DataStructures.Test.Integration\DataStructures.Test.Integration.csproj", "{35166C81-43F2-4286-98A2-AAF61809C106}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataStructures.Test.Common", "DataStructures.Test\DataStructures.Test.Common\DataStructures.Test.Common.csproj", "{F42C781A-F7A4-4D24-A3C2-37258065D89F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataStructures.Test.Common", "DataStructures.Test\DataStructures.Test.Common\DataStructures.Test.Common.csproj", "{F42C781A-F7A4-4D24-A3C2-37258065D89F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +21,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4D83C072-46BB-42D6-9BED-0490E5CF7213}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4D83C072-46BB-42D6-9BED-0490E5CF7213}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4D83C072-46BB-42D6-9BED-0490E5CF7213}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4D83C072-46BB-42D6-9BED-0490E5CF7213}.Release|Any CPU.Build.0 = Release|Any CPU
 		{944674E2-BC3C-4044-B009-FE41B8CD2964}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{944674E2-BC3C-4044-B009-FE41B8CD2964}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{944674E2-BC3C-4044-B009-FE41B8CD2964}.Release|Any CPU.ActiveCfg = Release|Any CPU

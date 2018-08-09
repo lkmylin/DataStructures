@@ -16,18 +16,16 @@ namespace DataStructures.Models
 
     public class BinaryTreeNode<T> : Node<T>, IBinaryTreeNode<T>
     {
-        private int? _level;
-        private int? _offset;
         public IBinaryTreeNode<T> Parent { get; set; }
         public IBinaryTreeNode<T> Left { get => Children?.Get(0) as IBinaryTreeNode<T>; set => SetChildren(value, null); }
         public IBinaryTreeNode<T> Right { get => Children?.Get(1) as IBinaryTreeNode<T>; set => SetChildren(null, value); }
-        public int Level => (int)(_level ?? (_level = GetLevel()));
-        public int Offset => (int)(_offset ?? (_offset = GetOffset()));
+        public int Level => GetLevel();
+        public int Offset => GetOffset();
         public BinaryTreeNodeType Type { get; set; }
 
-        public BinaryTreeNode() { }
-        public BinaryTreeNode(T value) : base(value) { }
-        public BinaryTreeNode(T value, IBinaryTreeNode<T> left, IBinaryTreeNode<T> right)
+        internal BinaryTreeNode() { }
+        internal BinaryTreeNode(T value) : base(value) { }
+        internal BinaryTreeNode(T value, IBinaryTreeNode<T> left, IBinaryTreeNode<T> right)
         {
             Value = value;
             SetChildren(left, right);
@@ -71,9 +69,9 @@ namespace DataStructures.Models
         public T Value { get; set; }
         public IChildren<T> Children { get; set; }
 
-        public Node() { }
-        public Node(T value) : this(value, null) { }
-        public Node(T value, IChildren<T> children)
+        internal Node() { }
+        internal Node(T value) : this(value, null) { }
+        internal Node(T value, IChildren<T> children)
         {
             Value = value;
             Children = children;
@@ -89,8 +87,8 @@ namespace DataStructures.Models
 
     public class Children<T> : Collection<INode<T>>, IChildren<T>
     {
-        public Children() : base() { }
-        public Children(int size)
+        internal Children() : base() { }
+        internal Children(int size)
         {
             for (var i = 0; i < size; i++)
             {
