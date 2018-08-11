@@ -82,11 +82,7 @@ namespace DataStructures.Services
         {
             if (node == null && root == null) return null;
             if (node == null) return root;
-            if (root == null || root.Value == null)
-            {
-                root = node;
-                return root;
-            }
+            if (root == null || root.Value == null) return node;
             var compareResult = node.Value.CompareTo(root.Value);
             if (compareResult == 0)
             {
